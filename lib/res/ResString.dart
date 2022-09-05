@@ -13,6 +13,9 @@ var whatYouWant = "What you wanna to do today";
 var celebrateNoCooking = "Celebrate no cooking day";
 var trendingRestaurantNearYou = "Trending restaurants near you";
 var viewAll = "View All";
+var orderFood = "Order Food";
+var shopByCategories = "Shop by categories ";
+var topRatedRestaurant = "Top rated restautants ";
 
 /*Intro*/
 var stepOneTitle = "Order from your\nfavourite restaurants";
@@ -42,6 +45,7 @@ var ralewayRegular = "ralewayRegular";
 var segoeui = "segoeui";
 var segoeUiSemibold = "segoeUiSemibold";
 var poppinsSemiBold = "poppinsSemiBold";
+var ralewayBlack = "ralewayBlack";
 
 /*Animation Tim*/
 var animationTime = 1000; /*=----------*/

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gdigitaldelivery/res/ResColor.dart';
+import 'package:gdigitaldelivery/screens/home/OrderFoodScreen.dart';
 import '../../../res/ResString.dart';
 import '../../components/imageslider/carousel_slider.dart';
 
@@ -168,10 +169,20 @@ class HomeScreenState extends State<HomeScreen> {
                               Row(
                                 children: [
                                   Expanded(
-                                      child: Image.asset(
-                                    "${imagePath}img_orderFood.png",
-                                    height: 100,
-                                    fit: BoxFit.fill,
+                                      child: InkWell(
+                                    onTap: () {
+                                      Navigator.of(context, rootNavigator: true)
+                                          .push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OrderFoodScreen()),
+                                      );
+                                    },
+                                    child: Image.asset(
+                                      "${imagePath}img_orderFood.png",
+                                      height: 100,
+                                      fit: BoxFit.fill,
+                                    ),
                                   )),
                                   const SizedBox(
                                     width: 10,
