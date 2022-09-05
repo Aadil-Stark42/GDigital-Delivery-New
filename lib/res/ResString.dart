@@ -16,6 +16,7 @@ var viewAll = "View All";
 var orderFood = "Order Food";
 var shopByCategories = "Shop by categories ";
 var topRatedRestaurant = "Top rated restautants ";
+var restaurantAroundYou = "Restaurants around you ";
 
 /*Intro*/
 var stepOneTitle = "Order from your\nfavourite restaurants";

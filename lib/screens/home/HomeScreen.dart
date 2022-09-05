@@ -941,8 +941,8 @@ class HomeScreenState extends State<HomeScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
+                                left: 7,
+                                right: 7,
                                 top: 8,
                               ),
                               child: Column(
@@ -1087,8 +1087,8 @@ class HomeScreenState extends State<HomeScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
+                                left: 7,
+                                right: 7,
                                 top: 8,
                               ),
                               child: Column(

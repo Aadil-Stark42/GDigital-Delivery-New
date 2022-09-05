@@ -227,6 +227,8 @@ class OrderFoodScreenState extends State<OrderFoodScreen> {
                           ),
                         ),
                         topRestaurantView(),
+                        trendingThisWeek(),
+                        restaurantAroundYouView()
                       ],
                     ),
                   )
@@ -561,7 +563,7 @@ class OrderFoodScreenState extends State<OrderFoodScreen> {
           height: 30,
         ),
         SizedBox(
-          height: 200,
+          height: 156,
           child: AnimationLimiter(
             child: ListView.builder(
               padding: const EdgeInsets.only(left: 14),
@@ -579,38 +581,334 @@ class OrderFoodScreenState extends State<OrderFoodScreen> {
                           child: Container(
                         width: 110,
                         margin: const EdgeInsets.only(right: 15),
-                        height: 200,
+                        height: 156,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                "${imagePath}img_temp.png",
-                                width: double.maxFinite,
-                                height: 110,
-                              ),
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image.asset(
+                                    "${imagePath}img_temp.png",
+                                    width: double.maxFinite,
+                                    height: 110,
+                                  ),
+                                ),
+                                persontagView(index, 0)
+                              ],
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(
-                              "Island Grill",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: ralewayBold,
-                                  color: blackColor),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Island Grill",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: ralewayBold,
+                                        color: blackColor),
+                                  ),
+                                  const SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text(
+                                    "40 mins",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: poppinsRegular,
+                                        color: greyColor),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        SizedBox(
+          height: 156,
+          child: AnimationLimiter(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(left: 14),
+              itemCount: 5,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: Duration(milliseconds: animationTime),
+                  child: SlideAnimation(
+                    horizontalOffset: 50.0,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: FadeInAnimation(
+                          child: Container(
+                        width: 110,
+                        margin: const EdgeInsets.only(right: 15),
+                        height: 156,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image.asset(
+                                    "${imagePath}img_temp.png",
+                                    width: double.maxFinite,
+                                    height: 110,
+                                  ),
+                                ),
+                                persontagView(index, 2)
+                              ],
                             ),
                             const SizedBox(
-                              height: 0,
+                              height: 10,
                             ),
-                            Text(
-                              "40 mins",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: poppinsRegular,
-                                  color: greyColor),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Island Grill",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: ralewayBold,
+                                        color: blackColor),
+                                  ),
+                                  const SizedBox(
+                                    height: 2,
+                                  ),
+                                  Text(
+                                    "40 mins",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontFamily: poppinsRegular,
+                                        color: greyColor),
+                                  ),
+                                ],
+                              ),
                             )
+                          ],
+                        ),
+                      )),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  persontagView(int index, int viewIndex) {
+    if (index == viewIndex) {
+      return Positioned(
+          bottom: 8,
+          right: 0,
+          left: 0,
+          child: Container(
+            width: 77,
+            height: 28,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage(imagePath + "offers_pers_bg.png"),
+            )),
+            child: Center(
+              child: Text(
+                "upto 60% off",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 10, fontFamily: poppinsBold, color: whiteColor),
+              ),
+            ),
+          ));
+    } else {
+      return Container(
+        width: 0,
+        height: 0,
+      );
+    }
+  }
+
+  trendingThisWeek() {
+    Size size = MediaQuery.of(context).size;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 50,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                "${imagePath}img_badge.png",
+                width: 25,
+                height: 25,
+              ),
+              const SizedBox(
+                width: 9,
+              ),
+              Text(
+                topRatedRestaurant,
+                style: TextStyle(
+                    fontSize: 17, color: blackColor, fontFamily: ralewayBold),
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        SizedBox(
+          height: 250,
+          child: AnimationLimiter(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(left: 14),
+              itemCount: 5,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: Duration(milliseconds: animationTime),
+                  child: SlideAnimation(
+                    horizontalOffset: 50.0,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: FadeInAnimation(
+                          child: Container(
+                        width: size.width / 2.2,
+                        margin: const EdgeInsets.only(right: 15),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: greyColor3, width: 1),
+                            borderRadius: BorderRadius.circular(18)),
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(16),
+                                        topLeft: Radius.circular(16)),
+                                    child: Image.asset(
+                                      "${imagePath}pizza_temp2.png",
+                                      width: double.maxFinite,
+                                      fit: BoxFit.fitWidth,
+                                      height: 150,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 7,
+                                    right: 7,
+                                    top: 8,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Mexicano Pizza",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontFamily: ralewayBold,
+                                            color: blackColor),
+                                      ),
+                                      const SizedBox(
+                                        height: 3,
+                                      ),
+                                      Text(
+                                        "El Pirata Porch",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: greyColor,
+                                            fontFamily: poppinsRegular,
+                                            fontSize: 12),
+                                      ),
+                                      const SizedBox(
+                                        height: 3,
+                                      ),
+                                      Text(
+                                        "₹250",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: poppinsSemiBold,
+                                            fontWeight: FontWeight.bold,
+                                            color: blackColor),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            Positioned(
+                                right: -3,
+                                bottom: -3,
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Image.asset(
+                                    "${imagePath}ic_add.png",
+                                    fit: BoxFit.cover,
+                                  ),
+                                  iconSize: 35,
+                                )),
+                            Positioned(
+                                right: 10,
+                                bottom: 108,
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 5, right: 5, top: 3, bottom: 3),
+                                  decoration: BoxDecoration(
+                                      color: greenColor,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "4.1",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: poppinsMedium,
+                                              color: whiteColor),
+                                        ),
+                                        Image.asset(
+                                          "${imagePath}ic_star.png",
+                                          width: 15,
+                                          height: 15,
+                                          fit: BoxFit.cover,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ))
                           ],
                         ),
                       )),
@@ -623,5 +921,261 @@ class OrderFoodScreenState extends State<OrderFoodScreen> {
         )
       ],
     );
+  }
+
+  restaurantAroundYouView() {
+    Size size = MediaQuery.of(context).size;
+    late List<Widget> restaurantImages = [];
+    int restaurantCurrentIndex = 0;
+    restaurantImages.add(restaurantImageSlider());
+    restaurantImages.add(restaurantImageSlider());
+    restaurantImages.add(restaurantImageSlider());
+    restaurantImages.add(restaurantImageSlider());
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 50,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                "${imagePath}img_rest_around_you.png",
+                width: 25,
+                height: 25,
+              ),
+              const SizedBox(
+                width: 9,
+              ),
+              Text(
+                restaurantAroundYou,
+                style: TextStyle(
+                    fontSize: 17, color: blackColor, fontFamily: ralewayBold),
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        AnimationLimiter(
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: 5,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemBuilder: (BuildContext context, int index) {
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                duration: Duration(milliseconds: animationTime),
+                child: SlideAnimation(
+                  horizontalOffset: 50.0,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: FadeInAnimation(
+                        child: Container(
+                      width: size.width,
+                      margin:
+                          const EdgeInsets.only(right: 15, top: 20, left: 15),
+                      height: 340,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: greyColor3, width: 1),
+                          borderRadius: BorderRadius.circular(22)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 200,
+                            width: double.maxFinite,
+                            child: Stack(
+                              children: [
+                                CarouselSlider(
+                                  items: restaurantImages,
+                                  options: CarouselOptions(
+                                      height: 200,
+                                      autoPlay: false,
+                                      enlargeCenterPage: false,
+                                      aspectRatio: 16 / 9,
+                                      viewportFraction: 1,
+                                      onPageChanged: (bindex, reason) {
+                                        setState(() {
+                                          restaurantCurrentIndex = bindex;
+                                        });
+                                      }),
+                                ),
+                                Positioned(
+                                    right: 12,
+                                    bottom: 12,
+                                    child: Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, right: 5, top: 3, bottom: 3),
+                                      decoration: BoxDecoration(
+                                          color: greenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Center(
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "4.1",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontFamily: poppinsMedium,
+                                                  color: whiteColor),
+                                            ),
+                                            Image.asset(
+                                              "${imagePath}ic_star.png",
+                                              width: 15,
+                                              height: 15,
+                                              fit: BoxFit.cover,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+                                Positioned(
+                                    bottom: 10,
+                                    right: 0,
+                                    left: 0,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: _buildIndicator2(index),
+                                    ))
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 13,
+                              right: 13,
+                              top: 18,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Bangalore Spices",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontFamily: ralewayBold,
+                                      color: blackColor),
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                Text(
+                                  "Japanese • Curry • Asia • Ramen",
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontFamily: poppinsRegular,
+                                      color: greyColor),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "${imagePath}ic_clock.png",
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "30 mins • 2km",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: poppinsRegular,
+                                          color: greyColor),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "${imagePath}ic_rupees.png",
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "₹200 for one person",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontFamily: poppinsRegular,
+                                          color: greyColor),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildIndicator2(int index) {
+    print("upperBannerCurrentIndex +$index");
+    List<Widget> indicators = [];
+    for (int i = 0; i < 4; i++) {
+      if (2 == i) {
+        indicators.add(_indicator2(true));
+      } else {
+        indicators.add(_indicator2(false));
+      }
+    }
+
+    return indicators;
+  }
+
+  Widget _indicator2(bool isActive) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 500),
+      height: 8,
+      width: 8,
+      margin: const EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+          color: isActive ? whiteColor : greyColor4,
+          borderRadius: BorderRadius.circular(20)),
+    );
+  }
+
+  Widget restaurantImageSlider() {
+    return SizedBox(
+        width: double.maxFinite,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(22),
+          child: FadeInImage(
+            fit: BoxFit.cover,
+            image: AssetImage("${imagePath}pizza_temp2.png"),
+            placeholder: AssetImage("${imagePath}pizza_temp2.png"),
+          ),
+        ));
   }
 }
